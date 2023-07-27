@@ -1,0 +1,11 @@
+<!-- login.component.html -->
+
+<div class="login-container">
+    <form class="login-form">
+        <h2>Login</h2>
+        <input type="text" placeholder="Usuário" [(ngModel)]="username" name="username">
+        <input type="password" placeholder="Senha" [(ngModel)]="password" name="password">
+        <button (click)="fazerLogin()">Entrar</button>
+        <p>Não tem uma conta? <a routerLink="/cadastro-usuario">Cadastre-se</a></p>
+    </form>
+</div>

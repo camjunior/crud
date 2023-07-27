@@ -1,0 +1,27 @@
+<h2>Listagem de Produtos</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Fornecedor</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produto of produtos">
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.fornecedor }}</td>
+            <td>{{ produto.valor }}</td>
+            <td>
+                <button (click)="editarProduto(produto.id)">Editar</button>
+                <button (click)="removerProduto(produto.id)">Remover</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a routerLink="/cadastro-produto">Cadastrar Novo Produto</a>
+
+
+
