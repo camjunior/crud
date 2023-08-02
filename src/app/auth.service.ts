@@ -8,28 +8,23 @@ import { map } from 'rxjs/operators'; // Importe a função 'map' daqui
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth'; // URL do Backend
+  private apiUrl = 'http://localhost:8080'; // URL do Backend
 
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
-      .pipe(
-        map((response: any) => { // Corrija a chamada da função 'map' aqui
-          if (response && response.token) {
-            // Se o login for bem-sucedido, armazene o token de autenticação no LocalStorage
-            localStorage.setItem('jwtToken', response.token);
-            return true;
-          } else {
-            return false;
-          }
-        })
-      );
-  }
+  return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
+    .pipe(
+      map((response: any) => { // Corrija a chamada da função 'map' aqui
+        console.log(response);
+        return !!response && !!response.token;
+      })
+    );
+}
 
   criarNovoUsuario(username: string, password: string): Observable<any> {
     const novoUsuario = { username, password};
-    return this.http.post<any>(`${this.apiUrl}/criar-usuario`, novoUsuario);
+    return this.http.post<any>(`${this.apiUrl}/criar-usuario`, novoUsuario, { headers: { 'Content-Type': 'application/json' } });
   }
 
   logout(): void {
